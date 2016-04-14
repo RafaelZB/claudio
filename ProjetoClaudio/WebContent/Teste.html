@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="js/jquery.mobile-1.4.5.min.css">
+<link rel="stylesheet" href="js/jquery.dataTables.min.css">
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+<script src="js/jquery.maskMoney.min.js" type="text/javascript"></script>
+<script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="js/moment.min.js" type="text/javascript"></script>
+</head>
+
+<script>
+
+/*
+ * 
+(taxa/dias uteis ano) * diasuteismes * valor
+
+(0.04 / 252) * 21 * 1500000 = 5000
+
+ 
+ */
+
+
+	function calculaDiasUteisRestantes() {
+		var dataAtual = new Date();
+		var diasUteisRestantes = 0;
+		var mesAtual = dataAtual.getMonth();
+
+		//COLOCAR AQUI OS FERIADOS NACIONAIS
+		var feriados = [new Date('2016 4 14'), new Date('2016 4 15')];
+
+
+		while(mesAtual == dataAtual.getMonth()){
+			if(dataAtual.getDay() == 6 || dataAtual.getDay() == 0){
+				dataAtual.setDate(dataAtual.getDate() + 1);
+				continue;
+			}
+			var pulaFeriado = false;
+			for(var i = 0 ; feriados.length > i ; i ++ ){
+				if( ( feriados[i].getDate() == dataAtual.getDate() ) && (feriados[i].getMonth() == dataAtual.getMonth() ) && (feriados[i].getYear() == dataAtual.getYear()) ){
+					dataAtual.setDate(dataAtual.getDate() + 1);
+					pulaFeriado = true;
+					break;
+				}
+			}
+			if(pulaFeriado == true)
+				continue;
+			
+			dataAtual.setDate(dataAtual.getDate() + 1);
+			diasUteisRestantes++;			
+		}
+		return diasUteisRestantes;
+		
+	}
+	
+	var diasUteisRestantes = calculaDiasUteisRestantes();
+	var diasUteisAno = 252;
+	$(document).ready(function(){
+		$("#valor").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true});
+		$('#example').DataTable( {
+	        "language": {
+	            "lengthMenu": "Exibir _MENU_ registros por página",
+	            "zeroRecords": "Sem registros",
+	            "info": "Exibindo página _PAGE_ de _PAGES_",
+	            "infoEmpty": "Sem registros disponíveis",
+	            "infoFiltered": "(filtrando do _MAX_ total de registros)"
+	        },
+	        "bSort" : false
+	    } );
+
+		$( "#valor" ).keyup(function(event) {
+			atualizarValores($( "#valor" ).val(), $( "#diasuteis" ).val());
+		});
+		$( "#diasuteis" ).keyup(function(event) {
+			atualizarValores($( "#valor" ).val(), $( "#diasuteis" ).val());
+		});
+		
+	});
+	function atualizarValores(valor, diasUteis){
+		if(valor == null || valor == 0 || diasUteis == null || diasUteis <= 0 || diasUteis == '')
+			return;
+
+		valor = valor.split(".").join("");
+		valor = valor.replace(",", ".");
+		valor = parseFloat(valor);
+
+		var taxaSupremo = 4.0;
+		var taxaClassico = 2.0;
+		var taxaSoberano = 1.5;
+		var taxaAbsoluto = 1;
+		var taxaDiferenciado = 0.5;
+		var taxaMaster = 0.5;
+		
+		diasUteis = parseInt(diasUteis);
+		
+		var bbcpsupremoresultadomes = (taxaSupremo / diasUteisAno) * diasUteis * valor;
+		var bbcpclassicoresultadomes = (taxaClassico / diasUteisAno) * diasUteis * valor;
+		var bbcpsoberanoresultadomes = (taxaSoberano / diasUteisAno) * diasUteis * valor;
+		var bbcpabsolutoresultadomes = (taxaAbsoluto / diasUteisAno) * diasUteis * valor;
+		var bbcpdiferenciadoresultadomes = (taxaDiferenciado / diasUteisAno) * diasUteis * valor;
+		var rfmasterresultadomes = (taxaMaster / diasUteisAno) * diasUteis * valor;
+
+		var xbbcpsupremoresultadomes = (taxaSupremo / diasUteisAno) * diasUteisRestantes * valor;
+		var xbbcpclassicoresultadomes = (taxaClassico / diasUteisAno) * diasUteisRestantes * valor;
+		var xbbcpsoberanoresultadomes = (taxaSoberano / diasUteisAno) * diasUteisRestantes * valor;
+		var xbbcpabsolutoresultadomes = (taxaAbsoluto / diasUteisAno) * diasUteisRestantes * valor;
+		var xbbcpdiferenciadoresultadomes = (taxaDiferenciado / diasUteisAno) * diasUteisRestantes * valor;
+		var xrfmasterresultadomes = (taxaMaster / diasUteisAno) * diasUteisRestantes * valor;
+
+		$( "#bbcpsupremoresultado" ).html(xbbcpsupremoresultadomes);
+		$( "#bbcpclassicoresultado" ).html(xbbcpclassicoresultadomes);
+		$( "#bbcpsoberanoresultado" ).html(xbbcpsoberanoresultadomes);
+		$( "#bbcpabsolutoresultado" ).html(xbbcpabsolutoresultadomes);
+		$( "#bbcpdiferenciadoresultado" ).html(xbbcpdiferenciadoresultadomes);
+		$( "#rfmasterresultado" ).html(xrfmasterresultadomes);
+
+		$( "#bbcpsupremoresultadomes" ).html(bbcpsupremoresultadomes);
+		$( "#bbcpclassicoresultadomes" ).html(bbcpclassicoresultadomes);
+		$( "#bbcpsoberanoresultadomes" ).html(bbcpsoberanoresultadomes);
+		$( "#bbcpabsolutoresultadomes" ).html(bbcpabsolutoresultadomes);
+		$( "#bbcpdiferenciadoresultadomes" ).html(bbcpdiferenciadoresultadomes);
+		$( "#rfmasterresultadomes" ).html(rfmasterresultadomes);
+		
+		}
+</script>
+<body>
+
+<div data-role="page">
+  <div data-role="main" class="ui-content">
+    <form method="post" action="form01">
+      <p>Quando você digitar algo, irá aparecer o botão de limpar a direita:</p>
+      
+      <label for="fname">Valor da aplicação</label>
+      <input type="text" name="valor" id="valor" data-clear-btn="true">
+      
+      <label for="fname">Quantidade de dias uteis</label>
+      <input type="text" name="diasuteis" id="diasuteis" data-clear-btn="true">
+    </form>
+  </div>
+  
+  
+  <table id="example" class="display" >
+        <thead>
+            <tr>
+                <th>Fundo de investimento</th>
+                <th>Taxa (% a.a.)</th>
+                <th>Resultado mes atual R$</th>
+                <th>Resultado - meses 21 dias (R$)</th>
+                
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Fundo de investimento</th>
+                <th>Taxa (% a.a.)</th>
+                <th>Resultado mes atual R$</th>
+                <th>Resultado - meses 21 dias (R$)</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <td>BB CP Supremo</td>
+                <td id="bbcpsupremotx">4,0</td>
+                <td id="bbcpsupremoresultadomes"></td>
+                <td id="bbcpsupremoresultado"></td>
+            </tr>
+            <tr>
+                <td>BB CP Clássico</td>
+                <td id="bbcpclassicotx">2,0</td>
+                <td id="bbcpclassicoresultadomes"></td>
+                <td id="bbcpclassicoresultado"></td>
+            </tr>
+            <tr>
+                <td>BB CP Soberano</td>
+                <td id="bbcpsoberanotx">1,5</td>
+                <td id="bbcpsoberanoresultadomes"></td>
+                <td id="bbcpsoberanoresultado"></td>
+            </tr>
+            <tr>
+                <td>BB CP Absoluto</td>
+                <td id="bbcpabsolutotx">1,0</td>
+                <td id="bbcpabsolutoresultadomes"></td>
+                <td id="bbcpabsolutoresultado"></td>
+            </tr>
+            <tr>
+                <td>BB CP Diferenciado</td>
+                <td id="bbcpdiferenciadotx">0,5</td>
+                <td id="bbcpdiferenciadoresultadomes"></td>
+                <td id="bbcpdiferenciadoresultado"></td>
+            </tr>
+            <tr>
+                <td>RF Master</td>
+                <td id="rfmastertx">0,5</td>
+                <td id="rfmasterresultadomes"></td>
+                <td id="rfmasterresultado"></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    
+    
+    
+</div>
+
+</body>
+</html>
