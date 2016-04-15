@@ -18,15 +18,15 @@
     height: 100% !important;
     border: 5;
   }
-  .ui-mobile [data-role="main1"] {
+  .ui-mobile [data-role="maintopo"] {
     box-sizing: border-box !important;
     border: 10px solid #a3a3a3 !important;
-
+    border-bottom: none !important;
   }
-  .ui-mobile [data-role="main2"] {
+  .ui-mobile [data-role="mainfundo"] {
     box-sizing: border-box !important;
     border: 10px solid #a6a6a6 !important;
-
+    border-top: none !important;
   }
 
 </style>
@@ -34,10 +34,12 @@
 
 <body>
 
-<div data-role="page">
-	<div data-role="main1" class="ui-content">
+	<div data-role="page">
+		<div data-role="maintopo" class="ui-content">
 			<h1 align="center">Simulador - Fundos de investimentos governo</h1>
-			<h2>Migração de recursos:</h2>
+		</div>
+		<div data-role="mainfundo" class="ui-content">
+			<table><tr><td style="font-size: 22px; font-weight: bold;">Recursos Internalizados BB</td><td style="font-size: 12px; font-weight: bold;">(migração de recursos entre produtos BB)</td></tr></table>
 			
 			<label for="fname">Informe o valor aplicado atual</label>
 			<input type="text" name="valor" id="valor" data-clear-btn="false">
@@ -55,96 +57,66 @@
 				<option value="I">RF Master</option>
 				<option value="J">CDB SWAP</option>
 			</select>
+		</div>
+		<div data-role="mainfundo" class="ui-content">
 			
+			<table><tr><td style="font-size: 22px; font-weight: bold;">Novos recursos</td><td style="font-size: 12px; font-weight: bold;">(não estão no BB)</td></tr></table>
+			<label for="fname">Informe o valor da nova aplicação</label>
+			<input type="text" name="novaAplicacao" id="novaAplicacao" data-clear-btn="false">
 			
-			<table data-role="table" id="table-custom-1" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="Exibir colunas" data-column-popup-theme="a">
+		</div>
+		<div data-role="mainfundo" class="ui-content">
+			<h2 align="center">Novo Resultado</h2>
+			
+			<!-- TABELA DE TARIFAS POSSÍVEIS -->
+			<table data-role="table" id="table-custom-2" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="Exibir colunas" data-column-popup-theme="a">
+			<!-- <table data-role="table" id="table-custom-2" data-mode="reflow" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="Exibir colunas" data-column-popup-theme="a"> -->
 				<thead>
 					<tr>
-						<th data-priority="2">Tarifa Atual</th>
-						<th data-priority="3">Taxa (% a.a.)</th>
-						<th data-priority="1">Tarifa Mês</th>
+						<th data-priority="1">Fundo de investimento</th>
+						<th data-priority="1">Taxa (% a.a.)</th>
+						<th data-priority="1">Tarifa Migração</th>
+						<th data-priority="1">Tarifa Nova Aplicação</th>
+						<th data-priority="1">Tarifa Aplicação ATUAL</th>
+						<th data-priority="1">Acréscimo Tarifa nova Aplicação</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td id="tarifaatualnome"></td>
-						<td id="tarifaatualtaxa"></td>
-						<td id="tarifaatualresultado"></td>
+						<td>BB CP Supremo</td>
+						<td>4,0</td>
+						<td id="bbcpsupremoA"></td>
+						<td id="bbcpsupremoB"></td>
+						<td id="bbaplicacaoatual1"></td>
+						<td id="bbcpsupremoC"></td>
+					</tr>
+					<tr>
+						<td>BB CP Clássico</td>
+						<td>2,0</td>
+						<td id="bbcpclassicoA"></td>
+						<td id="bbcpclassicoB"></td>
+						<td id="bbaplicacaoatual2"></td>
+						<td id="bbcpclassicoC"></td>
+					</tr>
+					<tr>
+						<td>BB CP Soberano</td>
+						<td>1,5</td>
+						<td id="bbcpsoberanoA"></td>
+						<td id="bbcpsoberanoB"></td>
+						<td id="bbaplicacaoatual3"></td>
+						<td id="bbcpsoberanoC"></td>
+					</tr>
+					<tr>
+						<td>BB CP Absoluto</td>
+						<td>1,0</td>
+						<td id="bbcpabsolutoA"></td>
+						<td id="bbcpabsolutoB"></td>
+						<td id="bbaplicacaoatual4"></td>
+						<td id="bbcpabsolutoC"></td>
 					</tr>
 				</tbody>
 			</table>
-			
-  </div>
-  <div data-role="main2" class="ui-content">
-			<h2>Novos resursos:</h2>
-			
-			<label for="fname">Informe o valor da nova aplicação</label>
-			<input type="text" name="novaAplicacao" id="novaAplicacao" data-clear-btn="false">
-			
-			
-
-  
-	  <!-- TABELA DE TARIFAS POSSÍVEIS -->
-	  <table data-role="table" id="table-custom-2" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="Exibir colunas" data-column-popup-theme="a">
-	        <thead>
-	            <tr>
-					<th data-priority="1">Fundo de investimento</th>
-	                <th data-priority="5">Taxa (% a.a.)</th>
-	                <th data-priority="2">Tarifa Migração</th>
-	                <th data-priority="3">Tarifa Nova Aplicação</th>
-	                <th data-priority="4">Tarifa Diferenciada</th>
-	            </tr>
-	        </thead>
-	        <tbody>
-	            <tr>
-	                <td>BB CP Supremo</td>
-	                <td>4,0</td>
-	                <td id="bbcpsupremoA"></td>
-	                <td id="bbcpsupremoB"></td>
-	                <td id="bbcpsupremoC"></td>
-	            </tr>
-	            <tr>
-	                <td>BB CP Clássico</td>
-	                <td>2,0</td>
-	                <td id="bbcpclassicoA"></td>
-	                <td id="bbcpclassicoB"></td>
-	                <td id="bbcpclassicoC"></td>
-	            </tr>
-	            <tr>
-	                <td>BB CP Soberano</td>
-	                <td>1,5</td>
-	                <td id="bbcpsoberanoA"></td>
-	                <td id="bbcpsoberanoB"></td>
-	                <td id="bbcpsoberanoC"></td>
-	            </tr>
-	            <tr>
-	                <td>BB CP Absoluto</td>
-	                <td>1,0</td>
-	                <td id="bbcpabsolutoA"></td>
-	                <td id="bbcpabsolutoB"></td>
-	                <td id="bbcpabsolutoC"></td>
-	            </tr>
-	           <!-- NÃO É PARA CONSTAR OS DOIS SEGUINTE NA TABELA 2
-	             <tr>
-	                <td>BB CP Diferenciado</td>
-	                <td>0,5</td>
-	                <td id="bbcpdiferenciadoA"></td>
-	                <td id="bbcpdiferenciadoB"></td>
-	                <td id="bbcpdiferenciadoC"></td>
-	            </tr>
-	            <tr>
-	                <td>RF Master</td>
-	                <td>0,5</td>
-	                <td id="rfmasterA"></td>
-	                <td id="rfmasterB"></td>
-	                <td id="rfmasterC"></td>
-	            </tr>
-	            -->
-	        </tbody>
-	    </table>
-    
-    </div>
-</div>
-<script>calculaTabela1();</script>
+		</div>
+	</div>
 </body>
 </html>

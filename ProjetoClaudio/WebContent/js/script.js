@@ -61,6 +61,7 @@
 		});
 		$( "#novaAplicacao" ).keyup(function(event) {
 			calculaTabela2();
+			calculaTabela1();
 		});
 		$( "#selecaotarifas" ).change(function(event) {
 			calculaTabela1();
@@ -114,10 +115,16 @@
 		var resultado = executarFormula(txTarifa[0], valor);
 		tarifaMigracao = resultado;
 		resultado = formataReal(resultado);
-		
+		/*
+		 * RETIRADA O TRECHO DO CÓDIGO QUE ATUALIZA A TABELA
 		$( "#tarifaatualnome" ).html(nomeTarifa);
 		$( "#tarifaatualtaxa" ).html(txTarifa[1]);
 		$( "#tarifaatualresultado" ).html(resultado);
+		*/
+		$( "#bbaplicacaoatual1" ).html(resultado);
+		$( "#bbaplicacaoatual2" ).html(resultado);
+		$( "#bbaplicacaoatual3" ).html(resultado);
+		$( "#bbaplicacaoatual4" ).html(resultado);
 	}
 	
 	function calculaTabela2(){
