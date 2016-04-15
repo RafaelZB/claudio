@@ -49,6 +49,7 @@
 	var taxaDiferenciado = [0.47, '0,5'];
 	var taxaMaster = [0.47 , '0,5'];
 	var taxaCdbSWAP = [0.04 , '0,05'];
+	var tarifaMigracao;
 	
 	$(document).ready(function(){
 		$("#valor").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true});
@@ -110,6 +111,7 @@
 		valor = parseFloat(valor);
 		
 		var resultado = executarFormula(txTarifa[0], valor);
+		tarifaMigracao = resultado;
 		resultado = formataReal(resultado);
 		
 		$( "#tarifaatualnome" ).html(nomeTarifa);
@@ -132,19 +134,19 @@
 		
 		$( "#bbcpsupremoA").html( formataReal( executarFormula(taxaSupremo[0], valor) ) );
 		$( "#bbcpsupremoB").html( formataReal( executarFormula(taxaSupremo[0], valorNovaAplicacao) ) );
-		$( "#bbcpsupremoC").html( formataReal( executarFormula(taxaSupremo[0], valor) - executarFormula(taxaSupremo[0], valorNovaAplicacao) ) );
+		$( "#bbcpsupremoC").html( formataReal( executarFormula(taxaSupremo[0], valor) - executarFormula(taxaSupremo[0], valorNovaAplicacao) + tarifaMigracao) );
 		
 		$( "#bbcpclassicoA").html( formataReal( executarFormula(taxaClassico[0], valor) ) );
 		$( "#bbcpclassicoB").html( formataReal( executarFormula(taxaClassico[0], valorNovaAplicacao) ) );
-		$( "#bbcpclassicoC").html( formataReal( executarFormula(taxaClassico[0], valor) - executarFormula(taxaClassico[0], valorNovaAplicacao) ) );
+		$( "#bbcpclassicoC").html( formataReal( executarFormula(taxaClassico[0], valor) - executarFormula(taxaClassico[0], valorNovaAplicacao) + tarifaMigracao) );
 		
 		$( "#bbcpsoberanoA").html( formataReal( executarFormula(taxaSoberano[0], valor) ) );
 		$( "#bbcpsoberanoB").html( formataReal( executarFormula(taxaSoberano[0], valorNovaAplicacao) ) );
-		$( "#bbcpsoberanoC").html( formataReal( executarFormula(taxaSoberano[0], valor) - executarFormula(taxaSoberano[0], valorNovaAplicacao) ) );
+		$( "#bbcpsoberanoC").html( formataReal( executarFormula(taxaSoberano[0], valor) - executarFormula(taxaSoberano[0], valorNovaAplicacao) + tarifaMigracao) );
 		
 		$( "#bbcpabsolutoA").html( formataReal( executarFormula(taxaAbsoluto[0], valor) ) );
 		$( "#bbcpabsolutoB").html( formataReal( executarFormula(taxaAbsoluto[0], valorNovaAplicacao) ) );
-		$( "#bbcpabsolutoC").html( formataReal( executarFormula(taxaAbsoluto[0], valor) - executarFormula(taxaAbsoluto[0], valorNovaAplicacao) ) );
+		$( "#bbcpabsolutoC").html( formataReal( executarFormula(taxaAbsoluto[0], valor) - executarFormula(taxaAbsoluto[0], valorNovaAplicacao) + tarifaMigracao) );
 		
 		/*
 		 * NÃO É PARA CONSTAR OS DOIS SEGUINTES NA TABELA 2
