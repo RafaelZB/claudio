@@ -8,6 +8,11 @@
 <script src="js/jquery.mobile-1.4.5.min.js"></script>
 <script src="js/jquery.maskMoney.min.js" type="text/javascript"></script>
 <script src="js/script.js" type="text/javascript"></script>
+<style>
+  .red {
+    color: red;
+  }
+</style>
 </head>
 
 <body>
@@ -22,12 +27,16 @@
 			
 			<label for="select-choice-1" class="select">Selecione o fundo de investimento</label>
 			<select name="select-choice-1" id="selecaotarifas">
-				<option selected value="4,0">BB CP Supremo</option>
-				<option value="2,0">BB CP Clássico</option>
-				<option value="1,5">BB CP Soberano</option>
-				<option value="1,0">BB CP Absoluto</option>
-				<option value="0,5">BB CP Diferenciado</option>
-				<option value="0,5">RF Master</option>
+				<option selected value="A">BB CP Supremo</option>
+				<option value="B">Conta Corrente</option>
+				<option value="C">BB CP Clássico</option>
+				<option value="D">BB CP Soberano</option>
+				<option value="E">BB CP Absoluto</option>
+				<option value="F">Poupanca</option>
+				<option value="G">CDB DI</option>
+				<option value="H">BB CP Diferenciado</option>
+				<option value="I">RF Master</option>
+				<option value="J">CDB SWAP</option>
 			</select>
 			
 			<p>Novos resursos:</p>
@@ -97,7 +106,8 @@
                 <td id="bbcpabsolutoB"></td>
                 <td id="bbcpabsolutoC"></td>
             </tr>
-            <tr>
+           <!-- NÃO É PARA CONSTAR OS DOIS SEGUINTE NA TABELA 2
+             <tr>
                 <td>BB CP Diferenciado</td>
                 <td>0,5</td>
                 <td id="bbcpdiferenciadoA"></td>
@@ -111,6 +121,7 @@
                 <td id="rfmasterB"></td>
                 <td id="rfmasterC"></td>
             </tr>
+            -->
         </tbody>
     </table>
     
