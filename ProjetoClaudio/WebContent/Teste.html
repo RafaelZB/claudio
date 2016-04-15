@@ -20,7 +20,8 @@
 <div data-role="page">
 	<div data-role="main" class="ui-content">
 		<form method="post" action="form01">
-			<p>Migração de recursos:</p>
+			<h1 align="center">Simulador - Fundos de investimentos governo</h1>
+			<h2>Migração de recursos:</h2>
 			
 			<label for="fname">Informe o valor aplicado atual</label>
 			<input type="text" name="valor" id="valor" data-clear-btn="false">
@@ -39,32 +40,35 @@
 				<option value="J">CDB SWAP</option>
 			</select>
 			
-			<p>Novos resursos:</p>
+			
+			<table data-role="table" id="table-custom-1" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="Exibir colunas" data-column-popup-theme="a">
+				<thead>
+					<tr>
+						<th data-priority="2">Tarifa Atual</th>
+						<th data-priority="3">Taxa (% a.a.)</th>
+						<th data-priority="1">Tarifa Mês</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td id="tarifaatualnome"></td>
+						<td id="tarifaatualtaxa"></td>
+						<td id="tarifaatualresultado"></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<h2>Novos resursos:</h2>
 			
 			<label for="fname">Informe o valor da nova aplicação</label>
 			<input type="text" name="novaAplicacao" id="novaAplicacao" data-clear-btn="false">
 			
 			
 		</form>
-	</div>
+
   
-  
-	<table data-role="table" id="table-custom-1" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="Exibir colunas" data-column-popup-theme="a">
-		<thead>
-			<tr>
-				<th data-priority="2">Tarifa Atual</th>
-				<th data-priority="3">Taxa (% a.a.)</th>
-				<th data-priority="1">Tarifa Mês 21 dias úteis</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td id="tarifaatualnome"></td>
-				<td id="tarifaatualtaxa"></td>
-				<td id="tarifaatualresultado"></td>
-			</tr>
-		</tbody>
-	</table>
   
   <!-- TABELA DE TARIFAS POSSÍVEIS -->
   <table data-role="table" id="table-custom-2" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="Exibir colunas" data-column-popup-theme="a">
@@ -72,9 +76,9 @@
             <tr>
 				<th data-priority="1">Fundo de investimento</th>
                 <th data-priority="5">Taxa (% a.a.)</th>
-                <th data-priority="2">Tarifa (21 dias) Migração</th>
-                <th data-priority="3">Tarifa (21 dias) Nova Aplicação</th>
-                <th data-priority="4">Tarifa Diferenciada atual - Migração + Nova</th>
+                <th data-priority="2">Tarifa Migração</th>
+                <th data-priority="3">Tarifa Nova Aplicação</th>
+                <th data-priority="4">Tarifa Diferenciada</th>
             </tr>
         </thead>
         <tbody>
@@ -125,7 +129,7 @@
         </tbody>
     </table>
     
-    
+    	</div>
 </div>
 <script>calculaTabela1();</script>
 </body>
