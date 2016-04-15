@@ -105,7 +105,8 @@
 			txTarifa = taxaCdbSWAP;
 			break;
 		}
-		
+		if(valor == null || valor == '')
+			valor = '0';
 		valor = valor.split(".").join("");
 		valor = valor.replace(",", ".");
 		valor = parseFloat(valor);
@@ -122,6 +123,12 @@
 	function calculaTabela2(){
 		var valor = $( "#valor" ).val();
 		var valorNovaAplicacao = $( "#novaAplicacao" ).val();
+		
+		if(valor == null || valor == '')
+			valor = '0';
+		
+		if(valorNovaAplicacao == null || valorNovaAplicacao == '')
+			valorNovaAplicacao = '0';
 		
 		valor = valor.split(".").join("");
 		valor = valor.replace(",", ".");
