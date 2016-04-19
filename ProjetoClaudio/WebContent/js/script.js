@@ -37,18 +37,33 @@
 	var diasUteisRestantes = calculaDiasUteisRestantes();
 	var diasUteisAno = 252;
 	var diasUteisMes = 21;
+	var listaDeFundos = [ 
+	                      ['Fundo Supremo',3.79],
+	                      ['CDB - 90% CDI',0.18],
+	                      ['CDB - 92% CDI',0.16],
+	                      ['CDB - 94% CDI',0.09],
+	                      ['CDB - 96% CDI',0.07],
+	                      ['Fundo Cl\xE1ssico',1.89],
+	                      ['Fundo Soberano',1.42],
+	                      ['Fundo Absoluto',0.95],
+	                      ['Fundo Diferenciado',0.47],
+	                      ['Fundo Master',0.47],
+	                      ['Fundo Super',0.19],
+	                      ['Fundo Premium',0.19],
+	                      ['Fundo Ref. DI',0.09],
+	                      ['Poupan\xE7a',0.85]
+	                     ];
 	
 	//TAXAS
-	var taxaSupremo = [3.79 , '4,0'];
-	var taxaContaCorrente = [2.69 , '3,0'];
-	var taxaClassico = [1.89 , '2,0'];
-	var taxaSoberano = [1.42 , '1,5'];
-	var taxaAbsoluto = [0.95 , '1,0'];
-	var taxaPoupanca = [0.85 , '1,0'];
-	var taxaCdbDI = [0.63 , '0,8'];
-	var taxaDiferenciado = [0.47, '0,5'];
-	var taxaMaster = [0.47 , '0,5'];
-	var taxaCdbSWAP = [0.04 , '0,05'];
+	var taxaSupremo = listaDeFundos[0];
+	var taxaClassico = listaDeFundos[5];
+	var taxaSoberano = listaDeFundos[6];
+	var taxaAbsoluto = listaDeFundos[7];
+	var taxaDiferenciado = listaDeFundos[8];
+	var taxaMaster = listaDeFundos[9];
+	var taxaSuper = listaDeFundos[10];
+	var taxaPremium = listaDeFundos[11];
+	var taxaRef = listaDeFundos[12];
 	var tarifaMigracao;
 	
 	$(document).ready(function(){
@@ -56,80 +71,56 @@
 		$("#novaAplicacao").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true});
 		
 		$( "#valor" ).keyup(function(event) {
-			calculaTabela1();
-			calculaTabela2();
+			calculaTarifaMigracao();
+			calculaTabela();
 		});
 		$( "#novaAplicacao" ).keyup(function(event) {
-			calculaTabela2();
-			calculaTabela1();
+			calculaTarifaMigracao();
+			calculaTabela();
 		});
 		$( "#selecaotarifas" ).change(function(event) {
-			calculaTabela1();
-			calculaTabela2();
+			calculaTarifaMigracao();
+			calculaTabela();
 		});
 		
 	});
 
-	function calculaTabela1(){
+	function calculaTarifaMigracao(){
 		var valor = $( "#valor" ).val();
 		var nomeTarifa = $( "#selecaotarifas option:selected" ).text();
 		var txTarifa = $( "#selecaotarifas" ).val();
-		switch (txTarifa){
-		case 'A':
-			txTarifa = taxaSupremo;
-			break;
-		case 'B':
-			txTarifa = taxaContaCorrente;
-			break;
-		case 'C':
-			txTarifa = taxaClassico;
-			break;
-		case 'D':
-			txTarifa = taxaSoberano;
-			break;
-		case 'E':
-			txTarifa = taxaAbsoluto;
-			break;
-		case 'F':
-			txTarifa = taxaPoupanca;
-			break;
-		case 'G':
-			txTarifa = taxaCdbDI;
-			break;
-		case 'H':
-			txTarifa = taxaDiferenciado;
-			break;
-		case 'I':
-			txTarifa = taxaMaster;
-			break;
-		case 'J':
-			txTarifa = taxaCdbSWAP;
-			break;
-		}
+		
 		if(valor == null || valor == '')
 			valor = '0';
 		valor = valor.split(".").join("");
 		valor = valor.replace(",", ".");
 		valor = parseFloat(valor);
 		
-		var resultado = executarFormula(txTarifa[0], valor);
+		var resultadoTarifa = new calculos( txTarifa, txTarifa, valor, valor);
+		var resultado = resultadoTarifa.resultadoTarifaMigracao;
+		
 		tarifaMigracao = resultado;
 		resultado = formataReal(resultado);
-		/*
-		 * RETIRADA O TRECHO DO CÓDIGO QUE ATUALIZA A TABELA
-		$( "#tarifaatualnome" ).html(nomeTarifa);
-		$( "#tarifaatualtaxa" ).html(txTarifa[1]);
-		$( "#tarifaatualresultado" ).html(resultado);
-		*/
+		
 		$( "#bbaplicacaoatual1" ).html(resultado);
 		$( "#bbaplicacaoatual2" ).html(resultado);
 		$( "#bbaplicacaoatual3" ).html(resultado);
 		$( "#bbaplicacaoatual4" ).html(resultado);
+		$( "#bbaplicacaoatual5" ).html(resultado);
+		$( "#bbaplicacaoatual6" ).html(resultado);
+		$( "#bbaplicacaoatual7" ).html(resultado);
+		$( "#bbaplicacaoatual8" ).html(resultado);
+		$( "#bbaplicacaoatual9" ).html(resultado);
+		
+		$( "#headColunaTarifaAtual" ).html(nomeTarifa);
+		
+		
 	}
 	
-	function calculaTabela2(){
+	function calculaTabela(){
 		var valor = $( "#valor" ).val();
 		var valorNovaAplicacao = $( "#novaAplicacao" ).val();
+		var txTarifaMigracao = $( "#selecaotarifas" ).val();
 		
 		if(valor == null || valor == '')
 			valor = '0';
@@ -145,41 +136,80 @@
 		valorNovaAplicacao = valorNovaAplicacao.replace(",", ".");
 		valorNovaAplicacao = parseFloat(valorNovaAplicacao);
 		
+		var resultadoNovaAplicacao = 0; 
+		var resultadoAplicacao = 0;
 		
-		$( "#bbcpsupremoA").html( formataReal( executarFormula(taxaSupremo[0], valor) ) );
-		$( "#bbcpsupremoB").html( formataReal( executarFormula(taxaSupremo[0], valorNovaAplicacao) ) );
-		$( "#bbcpsupremoC").html( formataReal( executarFormula(taxaSupremo[0], valor) - executarFormula(taxaSupremo[0], valorNovaAplicacao) + tarifaMigracao) );
-		
-		$( "#bbcpclassicoA").html( formataReal( executarFormula(taxaClassico[0], valor) ) );
-		$( "#bbcpclassicoB").html( formataReal( executarFormula(taxaClassico[0], valorNovaAplicacao) ) );
-		$( "#bbcpclassicoC").html( formataReal( executarFormula(taxaClassico[0], valor) - executarFormula(taxaClassico[0], valorNovaAplicacao) + tarifaMigracao) );
-		
-		$( "#bbcpsoberanoA").html( formataReal( executarFormula(taxaSoberano[0], valor) ) );
-		$( "#bbcpsoberanoB").html( formataReal( executarFormula(taxaSoberano[0], valorNovaAplicacao) ) );
-		$( "#bbcpsoberanoC").html( formataReal( executarFormula(taxaSoberano[0], valor) - executarFormula(taxaSoberano[0], valorNovaAplicacao) + tarifaMigracao) );
-		
-		$( "#bbcpabsolutoA").html( formataReal( executarFormula(taxaAbsoluto[0], valor) ) );
-		$( "#bbcpabsolutoB").html( formataReal( executarFormula(taxaAbsoluto[0], valorNovaAplicacao) ) );
-		$( "#bbcpabsolutoC").html( formataReal( executarFormula(taxaAbsoluto[0], valor) - executarFormula(taxaAbsoluto[0], valorNovaAplicacao) + tarifaMigracao) );
-		
-		/*
-		 * NÃO É PARA CONSTAR OS DOIS SEGUINTES NA TABELA 2
-		$( "#bbcpdiferenciadoA").html( executarFormula(taxaDiferenciado, valor) );
-		$( "#bbcpdiferenciadoB").html( executarFormula(taxaDiferenciado, valorNovaAplicacao) );
-		$( "#bbcpdiferenciadoC").html();
-		
-		$( "#rfmasterA").html( executarFormula(taxaMaster, valor) );
-		$( "#rfmasterB").html( executarFormula(taxaMaster, valorNovaAplicacao) );
-		$( "#rfmasterC").html();
-		*/
+		var resultadoTaxaSupremo = new calculos( 		txTarifaMigracao, taxaSupremo[1], 		valor, valorNovaAplicacao);
+		var resultadoTaxaClassico = new calculos( 		txTarifaMigracao, taxaClassico[1], 		valor, valorNovaAplicacao);
+		var resultadoTaxaSoberano = new calculos( 		txTarifaMigracao, taxaSoberano[1], 		valor, valorNovaAplicacao);
+		var resultadoTaxaAbsoluto = new calculos( 		txTarifaMigracao, taxaAbsoluto[1], 		valor, valorNovaAplicacao);
+		var resultadoTaxaDiferenciado = new calculos( 	txTarifaMigracao, taxaDiferenciado[1], 	valor, valorNovaAplicacao);
+		var resultadoTaxaMaster = new calculos( 		txTarifaMigracao, taxaMaster[1], 		valor, valorNovaAplicacao);
+		var resultadoTaxaSuper = new calculos( 			txTarifaMigracao, taxaSuper[1], 		valor, valorNovaAplicacao);
+		var resultadoTaxaPremium = new calculos( 		txTarifaMigracao, taxaPremium[1], 		valor, valorNovaAplicacao);
+		var resultadoTaxaRef = new calculos( 			txTarifaMigracao, taxaRef[1], 			valor, valorNovaAplicacao);
+				
+		$( "#bbcpsupremoB").html( formataReal( resultadoTaxaSupremo.resultadoTarifaNovaAplicacao ) );
+		$( "#bbcpsupremoA").html( formataReal( resultadoTaxaSupremo.resultadoTarifaMigracao ) );
+		$( "#bbcpsupremoC").html( formataReal( resultadoTaxaSupremo.resultadoTarifaResultado ) );
+
+		$( "#bbcpclassicoB").html( formataReal( resultadoTaxaClassico.resultadoTarifaNovaAplicacao ) );
+		$( "#bbcpclassicoA").html( formataReal( resultadoTaxaClassico.resultadoTarifaMigracao ) );
+		$( "#bbcpclassicoC").html( formataReal( resultadoTaxaClassico.resultadoTarifaResultado ) );
+
+		$( "#bbcpsoberanoB").html( formataReal( resultadoTaxaSoberano.resultadoTarifaNovaAplicacao ) );
+		$( "#bbcpsoberanoA").html( formataReal( resultadoTaxaSoberano.resultadoTarifaMigracao ) );
+		$( "#bbcpsoberanoC").html( formataReal( resultadoTaxaSoberano.resultadoTarifaResultado ) );
+
+		$( "#bbcpabsolutoB").html( formataReal( resultadoTaxaAbsoluto.resultadoTarifaNovaAplicacao ) );
+		$( "#bbcpabsolutoA").html( formataReal( resultadoTaxaAbsoluto.resultadoTarifaMigracao ) );
+		$( "#bbcpabsolutoC").html( formataReal( resultadoTaxaAbsoluto.resultadoTarifaResultado ) );
+
+		$( "#bbcpdiferenciadoB").html( formataReal( resultadoTaxaDiferenciado.resultadoTarifaNovaAplicacao ) );
+		$( "#bbcpdiferenciadoA").html( formataReal( resultadoTaxaDiferenciado.resultadoTarifaMigracao ) );
+		$( "#bbcpdiferenciadoC").html( formataReal( resultadoTaxaDiferenciado.resultadoTarifaResultado ) );
+
+		$( "#bbcpmasterB").html( formataReal( resultadoTaxaMaster.resultadoTarifaNovaAplicacao ) );
+		$( "#bbcpmasterA").html( formataReal( resultadoTaxaMaster.resultadoTarifaMigracao ) );
+		$( "#bbcpmasterC").html( formataReal( resultadoTaxaMaster.resultadoTarifaResultado ) );
+
+		$( "#bbcpsuperB").html( formataReal( resultadoTaxaSuper.resultadoTarifaNovaAplicacao ) );
+		$( "#bbcpsuperA").html( formataReal( resultadoTaxaSuper.resultadoTarifaMigracao ) );
+		$( "#bbcpsuperC").html( formataReal( resultadoTaxaSuper.resultadoTarifaResultado ) );
+
+		$( "#bbcppremiumB").html( formataReal( resultadoTaxaPremium.resultadoTarifaNovaAplicacao ) );
+		$( "#bbcppremiumA").html( formataReal( resultadoTaxaPremium.resultadoTarifaMigracao ) );
+		$( "#bbcppremiumC").html( formataReal( resultadoTaxaPremium.resultadoTarifaResultado ) );
+
+		$( "#bbcprefB").html( formataReal( resultadoTaxaRef.resultadoTarifaNovaAplicacao ) );
+		$( "#bbcprefA").html( formataReal( resultadoTaxaRef.resultadoTarifaMigracao ) );
+		$( "#bbcprefC").html( formataReal( resultadoTaxaRef.resultadoTarifaResultado ) );
 		
 	}
 	
 	function executarFormula(taxa, valor){
 		taxa = taxa/100;
 		var resultado = (taxa / diasUteisAno) * diasUteisMes * valor;
-		//resultado = resultado.toFixed(2);
 		return resultado;
+	}
+	
+	function calculos (taxaAtual, taxaMigracao, valorAtual, valorNovaAplicacao){
+		this.taxaAtual = taxaAtual;
+		this.taxaMigracao = taxaMigracao;
+		this.valorAtual = valorAtual;
+		this.valorNovaAplicacao = valorNovaAplicacao;
+		
+		this.resultadoTarifaNovaAplicacao = calculaFormula(this.taxaAtual, this.valorNovaAplicacao);
+		this.resultadoTarifaAtual = calculaFormula(this.taxaAtual, this.valorAtual);
+		this.resultadoTarifaMigracao = calculaFormula(this.taxaMigracao, this.valorAtual);
+		this.resultadoTarifaResultado = this.resultadoTarifaAtual - this.resultadoTarifaMigracao + this.resultadoTarifaNovaAplicacao;
+		
+		function calculaFormula(taxa, valor){
+			taxa = taxa/100;
+			var resultado = (taxa / diasUteisAno) * diasUteisMes * valor;
+			return resultado;
+		}
+		
 	}
 	
 	function formataReal( int ){
@@ -196,6 +226,12 @@
 		if(negativo)
 			tmp = "<span class='red'>" + tmp + "</span>";
 		return tmp;
+	}
+	
+	function carregarComboTarifas(){
+		for(var i = 0 ; i < listaDeFundos.length ; i ++){
+			$('#selecaotarifas').append($("<option></option>").attr("value",listaDeFundos[i][1]).text(listaDeFundos[i][0]));
+		}
 	}
 	
 	
