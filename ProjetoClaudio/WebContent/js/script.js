@@ -202,7 +202,7 @@
 		this.resultadoTarifaNovaAplicacao = calculaFormula(this.taxaAtual, this.valorNovaAplicacao);
 		this.resultadoTarifaAtual = calculaFormula(this.taxaAtual, this.valorAtual);
 		this.resultadoTarifaMigracao = calculaFormula(this.taxaMigracao, this.valorAtual);
-		this.resultadoTarifaResultado = this.resultadoTarifaAtual - this.resultadoTarifaMigracao + this.resultadoTarifaNovaAplicacao;
+		this.resultadoTarifaResultado = - this.resultadoTarifaAtual + this.resultadoTarifaMigracao + this.resultadoTarifaNovaAplicacao;
 		
 		function calculaFormula(taxa, valor){
 			taxa = taxa/100;
