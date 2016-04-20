@@ -100,7 +100,7 @@
 		var resultado = resultadoTarifa.resultadoTarifaMigracao;
 		
 		tarifaMigracao = resultado;
-		resultado = formataReal(resultado);
+		resultado = numeroParaMoeda(resultado);
 		
 		$( "#bbaplicacaoatual1" ).html(resultado);
 		$( "#bbaplicacaoatual2" ).html(resultado);
@@ -149,41 +149,41 @@
 		var resultadoTaxaPremium = new calculos( 		txTarifaMigracao, taxaPremium[1], 		valor, valorNovaAplicacao);
 		var resultadoTaxaRef = new calculos( 			txTarifaMigracao, taxaRef[1], 			valor, valorNovaAplicacao);
 				
-		$( "#bbcpsupremoB").html( formataReal( resultadoTaxaSupremo.resultadoTarifaNovaAplicacao ) );
-		$( "#bbcpsupremoA").html( formataReal( resultadoTaxaSupremo.resultadoTarifaMigracao ) );
-		$( "#bbcpsupremoC").html( formataReal( resultadoTaxaSupremo.resultadoTarifaResultado ) );
+		$( "#bbcpsupremoB").html( numeroParaMoeda( resultadoTaxaSupremo.resultadoTarifaNovaAplicacao ) );
+		$( "#bbcpsupremoA").html( numeroParaMoeda( resultadoTaxaSupremo.resultadoTarifaMigracao ) );
+		$( "#bbcpsupremoC").html( numeroParaMoeda( resultadoTaxaSupremo.resultadoTarifaResultado ) );
 
-		$( "#bbcpclassicoB").html( formataReal( resultadoTaxaClassico.resultadoTarifaNovaAplicacao ) );
-		$( "#bbcpclassicoA").html( formataReal( resultadoTaxaClassico.resultadoTarifaMigracao ) );
-		$( "#bbcpclassicoC").html( formataReal( resultadoTaxaClassico.resultadoTarifaResultado ) );
+		$( "#bbcpclassicoB").html( numeroParaMoeda( resultadoTaxaClassico.resultadoTarifaNovaAplicacao ) );
+		$( "#bbcpclassicoA").html( numeroParaMoeda( resultadoTaxaClassico.resultadoTarifaMigracao ) );
+		$( "#bbcpclassicoC").html( numeroParaMoeda( resultadoTaxaClassico.resultadoTarifaResultado ) );
 
-		$( "#bbcpsoberanoB").html( formataReal( resultadoTaxaSoberano.resultadoTarifaNovaAplicacao ) );
-		$( "#bbcpsoberanoA").html( formataReal( resultadoTaxaSoberano.resultadoTarifaMigracao ) );
-		$( "#bbcpsoberanoC").html( formataReal( resultadoTaxaSoberano.resultadoTarifaResultado ) );
+		$( "#bbcpsoberanoB").html( numeroParaMoeda( resultadoTaxaSoberano.resultadoTarifaNovaAplicacao ) );
+		$( "#bbcpsoberanoA").html( numeroParaMoeda( resultadoTaxaSoberano.resultadoTarifaMigracao ) );
+		$( "#bbcpsoberanoC").html( numeroParaMoeda( resultadoTaxaSoberano.resultadoTarifaResultado ) );
 
-		$( "#bbcpabsolutoB").html( formataReal( resultadoTaxaAbsoluto.resultadoTarifaNovaAplicacao ) );
-		$( "#bbcpabsolutoA").html( formataReal( resultadoTaxaAbsoluto.resultadoTarifaMigracao ) );
-		$( "#bbcpabsolutoC").html( formataReal( resultadoTaxaAbsoluto.resultadoTarifaResultado ) );
+		$( "#bbcpabsolutoB").html( numeroParaMoeda( resultadoTaxaAbsoluto.resultadoTarifaNovaAplicacao ) );
+		$( "#bbcpabsolutoA").html( numeroParaMoeda( resultadoTaxaAbsoluto.resultadoTarifaMigracao ) );
+		$( "#bbcpabsolutoC").html( numeroParaMoeda( resultadoTaxaAbsoluto.resultadoTarifaResultado ) );
 
-		$( "#bbcpdiferenciadoB").html( formataReal( resultadoTaxaDiferenciado.resultadoTarifaNovaAplicacao ) );
-		$( "#bbcpdiferenciadoA").html( formataReal( resultadoTaxaDiferenciado.resultadoTarifaMigracao ) );
-		$( "#bbcpdiferenciadoC").html( formataReal( resultadoTaxaDiferenciado.resultadoTarifaResultado ) );
+		$( "#bbcpdiferenciadoB").html( numeroParaMoeda( resultadoTaxaDiferenciado.resultadoTarifaNovaAplicacao ) );
+		$( "#bbcpdiferenciadoA").html( numeroParaMoeda( resultadoTaxaDiferenciado.resultadoTarifaMigracao ) );
+		$( "#bbcpdiferenciadoC").html( numeroParaMoeda( resultadoTaxaDiferenciado.resultadoTarifaResultado ) );
 
-		$( "#bbcpmasterB").html( formataReal( resultadoTaxaMaster.resultadoTarifaNovaAplicacao ) );
-		$( "#bbcpmasterA").html( formataReal( resultadoTaxaMaster.resultadoTarifaMigracao ) );
-		$( "#bbcpmasterC").html( formataReal( resultadoTaxaMaster.resultadoTarifaResultado ) );
+		$( "#bbcpmasterB").html( numeroParaMoeda( resultadoTaxaMaster.resultadoTarifaNovaAplicacao ) );
+		$( "#bbcpmasterA").html( numeroParaMoeda( resultadoTaxaMaster.resultadoTarifaMigracao ) );
+		$( "#bbcpmasterC").html( numeroParaMoeda( resultadoTaxaMaster.resultadoTarifaResultado ) );
 
-		$( "#bbcpsuperB").html( formataReal( resultadoTaxaSuper.resultadoTarifaNovaAplicacao ) );
-		$( "#bbcpsuperA").html( formataReal( resultadoTaxaSuper.resultadoTarifaMigracao ) );
-		$( "#bbcpsuperC").html( formataReal( resultadoTaxaSuper.resultadoTarifaResultado ) );
+		$( "#bbcpsuperB").html( numeroParaMoeda( resultadoTaxaSuper.resultadoTarifaNovaAplicacao ) );
+		$( "#bbcpsuperA").html( numeroParaMoeda( resultadoTaxaSuper.resultadoTarifaMigracao ) );
+		$( "#bbcpsuperC").html( numeroParaMoeda( resultadoTaxaSuper.resultadoTarifaResultado ) );
 
-		$( "#bbcppremiumB").html( formataReal( resultadoTaxaPremium.resultadoTarifaNovaAplicacao ) );
-		$( "#bbcppremiumA").html( formataReal( resultadoTaxaPremium.resultadoTarifaMigracao ) );
-		$( "#bbcppremiumC").html( formataReal( resultadoTaxaPremium.resultadoTarifaResultado ) );
+		$( "#bbcppremiumB").html( numeroParaMoeda( resultadoTaxaPremium.resultadoTarifaNovaAplicacao ) );
+		$( "#bbcppremiumA").html( numeroParaMoeda( resultadoTaxaPremium.resultadoTarifaMigracao ) );
+		$( "#bbcppremiumC").html( numeroParaMoeda( resultadoTaxaPremium.resultadoTarifaResultado ) );
 
-		$( "#bbcprefB").html( formataReal( resultadoTaxaRef.resultadoTarifaNovaAplicacao ) );
-		$( "#bbcprefA").html( formataReal( resultadoTaxaRef.resultadoTarifaMigracao ) );
-		$( "#bbcprefC").html( formataReal( resultadoTaxaRef.resultadoTarifaResultado ) );
+		$( "#bbcprefB").html( numeroParaMoeda( resultadoTaxaRef.resultadoTarifaNovaAplicacao ) );
+		$( "#bbcprefA").html( numeroParaMoeda( resultadoTaxaRef.resultadoTarifaMigracao ) );
+		$( "#bbcprefC").html( numeroParaMoeda( resultadoTaxaRef.resultadoTarifaResultado ) );
 		
 	}
 	
@@ -211,21 +211,16 @@
 		}
 		
 	}
-	
-	function formataReal( int ){
+	function numeroParaMoeda(n, c, d, t){
+		var xyz;
 		var negativo = false;
-		if(int < 0)
+		if(n < 0)
 			negativo = true;
-		int = int.toFixed(2);
-		var tmp = int+'';
-		tmp = tmp.split(".").join("");
-		tmp = tmp.replace(/([0-9]{2})$/g, ",$1"); // REGEX NÂO MUDAR
-		if( tmp.length > 6 )
-			tmp = tmp.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
-		
+		c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "," : d, t = t == undefined ? "." : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
+		xyz =  s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 		if(negativo)
-			tmp = "<span class='red'>" + tmp + "</span>";
-		return tmp;
+			xyz = "<span class='red'>" + xyz + "</span>";
+		return xyz;
 	}
 	
 	function carregarComboTarifas(){
