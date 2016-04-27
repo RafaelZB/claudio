@@ -37,6 +37,7 @@
 	var diasUteisRestantes = calculaDiasUteisRestantes();
 	var diasUteisAno = 252;
 	var diasUteisMes = 21;
+	var siglaMoeda = ' R$ ';
 	var listaDeFundos = [ 
 	                      ['Fundo Supremo',3.79],
 	                      ['CDB - 90% CDI',0.18],
@@ -67,8 +68,8 @@
 	var tarifaMigracao;
 	
 	$(document).ready(function(){
-		$("#valor").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true});
-		$("#novaAplicacao").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true});
+		$("#valor").maskMoney({prefix:siglaMoeda, showSymbol:true, thousands:'.', decimal:',', symbolStay: false});
+		$("#novaAplicacao").maskMoney({prefix:siglaMoeda, showSymbol:true, thousands:'.', decimal:',', symbolStay: true});
 		
 		$( "#valor" ).keyup(function(event) {
 			calculaTarifaMigracao();
@@ -94,6 +95,7 @@
 			valor = '0';
 		valor = valor.split(".").join("");
 		valor = valor.replace(",", ".");
+		valor = valor.replace(siglaMoeda, "");
 		valor = parseFloat(valor);
 		
 		var resultadoTarifa = new calculos( txTarifa, txTarifa, valor, valor);
@@ -130,10 +132,12 @@
 		
 		valor = valor.split(".").join("");
 		valor = valor.replace(",", ".");
+		valor = valor.replace(siglaMoeda, "");
 		valor = parseFloat(valor);
 		
 		valorNovaAplicacao = valorNovaAplicacao.split(".").join("");
 		valorNovaAplicacao = valorNovaAplicacao.replace(",", ".");
+		valorNovaAplicacao = valorNovaAplicacao.replace(siglaMoeda, "");
 		valorNovaAplicacao = parseFloat(valorNovaAplicacao);
 		
 		var resultadoNovaAplicacao = 0; 
@@ -199,7 +203,7 @@
 		this.valorAtual = valorAtual;
 		this.valorNovaAplicacao = valorNovaAplicacao;
 		
-		this.resultadoTarifaNovaAplicacao = calculaFormula(this.taxaAtual, this.valorNovaAplicacao);
+		this.resultadoTarifaNovaAplicacao = calculaFormula(this.taxaMigracao, this.valorNovaAplicacao);
 		this.resultadoTarifaAtual = calculaFormula(this.taxaAtual, this.valorAtual);
 		this.resultadoTarifaMigracao = calculaFormula(this.taxaMigracao, this.valorAtual);
 		this.resultadoTarifaResultado = - this.resultadoTarifaAtual + this.resultadoTarifaMigracao + this.resultadoTarifaNovaAplicacao;
@@ -218,6 +222,7 @@
 			negativo = true;
 		c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "," : d, t = t == undefined ? "." : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
 		xyz =  s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+		xyz = xyz + siglaMoeda;
 		if(negativo)
 			xyz = "<span class='red'>" + xyz + "</span>";
 		return xyz;
