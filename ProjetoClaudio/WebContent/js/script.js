@@ -114,7 +114,7 @@
 		$( "#bbaplicacaoatual8" ).html(resultado);
 		$( "#bbaplicacaoatual9" ).html(resultado);
 		
-		$( "#headColunaTarifaAtual" ).html(nomeTarifa);
+		$( "#headColunaTarifaAtual" ).html('Resultado Recurso Internalizado<br>' + nomeTarifa);
 		
 		
 	}
