@@ -34,6 +34,12 @@
 	float:left; 
 	margin-bottom: 1%;
   }
+  .celulaA{
+  	box-sizing: border-box !important;
+    border: 10px solid #1A5E9B !important;
+    border-top: none !important;
+    width: 50%;
+  }
 
 </style>
 </head>
@@ -43,26 +49,33 @@
 		<div data-role="maintopo" class="ui-content">
 			<h1 align="center"><img src="image/bbLogo.jpg" alt="Low resolution logo"class="alinhadoEsquerda"/>Simulador - Fundos de Investimentos Governo</h1>
 		</div>
-		<div data-role="mainfundo" class="ui-content">
-			<table><tr><td style="font-size: 22px; font-weight: bold;">Recursos Internalizados BB</td><td style="font-size: 12px; font-weight: bold;">(migração de recursos entre produtos BB)</td></tr></table>
-			
-			<label for="fname">Informe o valor aplicado atual</label>
-			<input type="text" name="valor" id="valor" data-clear-btn="false">
-			
-			<label for="select-choice-1" class="select">Selecione o fundo de investimento</label>
-			
-			<select name="select-choice-1" id="selecaotarifas">
-				<option selected value=0>Selecione um produto</option>
-			</select>
-			
-		</div>
-		<div data-role="mainfundo" class="ui-content">
-			
-			<table><tr><td style="font-size: 22px; font-weight: bold;">Novos recursos</td><td style="font-size: 12px; font-weight: bold;">(não estão no BB)</td></tr></table>
-			<label for="fname">Informe o valor da nova aplicação</label>
-			<input type="text" name="novaAplicacao" id="novaAplicacao" data-clear-btn="false">
-			
-		</div>
+		<table cellspacing="0" cellpadding="0" style="border: none;width: 100%;">
+			<tr>
+				<td class=celulaA>
+					<div class="ui-content">
+						<table><tr><td style="font-size: 22px; font-weight: bold;">Recursos Internalizados BB</td><td style="font-size: 12px; font-weight: bold;">(migração de recursos entre produtos BB)</td></tr></table>
+						
+						<label for="fname">Informe o valor aplicado atual</label>
+						<input type="text" name="valor" id="valor" data-clear-btn="false">
+						
+						<label for="select-choice-1" class="select">Selecione o fundo de investimento</label>
+						
+						<select name="select-choice-1" id="selecaotarifas">
+							<option selected value=0>Selecione um produto</option>
+						</select>
+						
+					</div>
+				</td>
+				<td class=celulaA>
+					<div class="ui-content">
+						<table><tr><td style="font-size: 22px; font-weight: bold;">Novos recursos</td><td style="font-size: 12px; font-weight: bold;">(não estão no BB)</td></tr></table>
+						<label for="fname">Informe o valor da nova aplicação</label>
+						<input type="text" name="novaAplicacao" id="novaAplicacao" data-clear-btn="false">
+						
+					</div>
+				</td>
+			</tr>
+		</table>
 		<div data-role="mainfundo" class="ui-content">
 			<h2 align="center">Novo Resultado</h2>
 			
