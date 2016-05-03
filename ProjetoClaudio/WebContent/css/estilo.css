@@ -28,7 +28,11 @@
 		font-size: 12px;
 		font-weight: bold;
 	}
-	
+	.fonteApresentacao{
+		font-size: 18px;
+		font-weight: bold;
+		line-height: 1.3;
+	}
 	
 	
 	
@@ -53,6 +57,12 @@
 		border-bottom: none !important;
 		padding: 1px !important;
 	}
+	.ui-mobile [data-role="mainmeio"] {
+		box-sizing: border-box !important;
+		border: 10px solid #1A5E9B !important;
+		border-bottom: none !important;
+		padding: 1px !important;
+	}
 	.ui-mobile [data-role="mainfundo"] {
 		box-sizing: border-box !important;
 		border: 10px solid #1A5E9B !important;
@@ -70,11 +80,13 @@
 		box-sizing: border-box !important;
 		border: 10px solid #1A5E9B !important;
 		width: 50%;
+		vertical-align: top;
 	}
 	.celulaB{
 		box-sizing: border-box !important;
 		border: 10px solid #1A5E9B !important;
 		border-left: none !important;
 		width: 50%;
+		vertical-align: top
 	}
 		
