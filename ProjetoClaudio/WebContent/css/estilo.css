@@ -1,0 +1,80 @@
+	/*************************************************************
+	Estilos que coordena caracteristicas das fontes apresentadas
+	*************************************************************/
+	.fonteCabecalho{
+		font-size: 72px !important;
+	}
+	.fonteRecursos{
+		font-size: 22px;
+		font-weight: bold;
+	}
+	.fonteRecursosDescricao{
+		font-size: 12px;
+		font-weight: bold;
+	}
+	.fonteValores{
+		font-size: 18px !important;
+	}
+	.fonteResultado{
+		font-size: 26px;
+	}
+	.fonteTabelaCabecalho{
+		font-size: 18px;
+	}
+	.fonteTabelaCelula{
+		font-size: 18px;
+	}
+	.fonteObservacao{
+		font-size: 12px;
+		font-weight: bold;
+	}
+	
+	
+	
+	
+	
+	
+	/******************************************************
+	Estilos das cores das tabelas, bordas, fundos e demais
+	******************************************************/
+	.red {
+		color: red;
+	}
+	.ui-mobile [data-role="page"] {
+		box-sizing: border-box !important;
+		border: 10px solid #1A5E9B !important;
+		height: 100% !important;
+		border: 5;
+	}
+	.ui-mobile [data-role="maintopo"] {
+		box-sizing: border-box !important;
+		background-color: #F8D117;
+		border: 10px solid #1A5E9B !important;
+		border-bottom: none !important;
+		padding: 1px !important;
+	}
+	.ui-mobile [data-role="mainfundo"] {
+		box-sizing: border-box !important;
+		border: 10px solid #1A5E9B !important;
+		border-top: none !important;
+	}
+	.alinhadoEsquerda{ 
+		padding-left: 1em;
+	}
+	.tabelaValores{
+		border: none;
+		width: 100%;
+		border-collapse: collapse;
+	}
+	.celulaA{
+		box-sizing: border-box !important;
+		border: 10px solid #1A5E9B !important;
+		width: 50%;
+	}
+	.celulaB{
+		box-sizing: border-box !important;
+		border: 10px solid #1A5E9B !important;
+		border-left: none !important;
+		width: 50%;
+	}
+		

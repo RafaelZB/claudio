@@ -39,32 +39,36 @@
 	var diasUteisMes = 21;
 	var siglaMoeda = ' R$ ';
 	var listaDeFundos = [ 
-	                      ['Fundo Supremo',3.79],
-	                      ['CDB - 90% CDI',0.18],
-	                      ['CDB - 92% CDI',0.16],
-	                      ['CDB - 94% CDI',0.09],
-	                      ['CDB - 96% CDI',0.07],
-	                      ['Fundo Cl\xE1ssico',1.89],
-	                      ['Fundo Soberano',1.42],
-	                      ['Fundo Absoluto',0.95],
-	                      ['Fundo Diferenciado',0.47],
-	                      ['Fundo Master',0.47],
-	                      ['Fundo Super',0.19],
-	                      ['Fundo Premium',0.19],
-	                      ['Fundo Ref. DI',0.09],
-	                      ['Poupan\xE7a',0.85]
-	                     ];
-	
+	                      ['Fundo Setor P\xFAblico Supremo - 4,0',3.79],
+	                      ['Fundo Setor P\xFAblico Cl\xE1ssico - 2,0',1.89],
+	                      ['Fundo Setor P\xFAblico Soberano - 1,5',1.42],
+	                      ['Fundo Setor P\xFAblico Absoluto - 1,0',0.95],
+	                      ['Fundo Setor P\xFAblico Diferenciado - 0,50',0.47],
+	                      ['Fundo Setor P\xFAblico Master - 0,5',0.47],
+	                      ['Fundo Setor P\xFAblico Super - 0,2',0.19],
+	                      ['Fundo Setor P\xFAblico Premium - 0,2',0.19],
+	                      ['Fundo Setor P\xFAblico Ref. DI - 0,1',0.09],
+	                      ['CDB - 90% CDI - 0,2',0.18],
+	                      ['CDB - 92% CDI - 0,15',0.16],
+	                      ['CDB - 94% CDI - 0,1',0.09],
+	                      ['CDB - 96% CDI - 0,05',0.07],
+	                      ['Poupan\xE7a - 1,0',0.85]
+	                     ];	
 	//TAXAS
-	var taxaSupremo = listaDeFundos[0];
-	var taxaClassico = listaDeFundos[5];
-	var taxaSoberano = listaDeFundos[6];
-	var taxaAbsoluto = listaDeFundos[7];
-	var taxaDiferenciado = listaDeFundos[8];
-	var taxaMaster = listaDeFundos[9];
-	var taxaSuper = listaDeFundos[10];
-	var taxaPremium = listaDeFundos[11];
-	var taxaRef = listaDeFundos[12];
+	var taxaSupremo 		= listaDeFundos[0];
+	var taxaClassico 		= listaDeFundos[1];
+	var taxaSoberano 		= listaDeFundos[2];
+	var taxaAbsoluto 		= listaDeFundos[3];
+	var taxaDiferenciado 	= listaDeFundos[4];
+	var taxaMaster 			= listaDeFundos[5];
+	var taxaSuper 			= listaDeFundos[6];
+	var taxaPremium 		= listaDeFundos[7];
+	var taxaRef 			= listaDeFundos[8];
+	var taxaCdb90 			= listaDeFundos[9];
+	var taxaCdb92 			= listaDeFundos[10];
+	var taxaCdb94 			= listaDeFundos[11];
+	var taxaCdb96 			= listaDeFundos[12];
+	var taxaPoup 			= listaDeFundos[13];
 	var tarifaMigracao;
 	
 	$(document).ready(function(){
@@ -80,6 +84,10 @@
 			calculaTabela();
 		});
 		$( "#selecaotarifas" ).change(function(event) {
+			calculaTarifaMigracao();
+			calculaTabela();
+		});
+		$( "#selecaotarifas" ).keyup(function(event) {
 			calculaTarifaMigracao();
 			calculaTabela();
 		});

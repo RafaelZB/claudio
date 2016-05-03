@@ -9,63 +9,32 @@
 <script src="js/jquery.mobile-1.4.5.min.js"></script>
 <script src="js/jquery.maskMoney.min.js" type="text/javascript"></script>
 <script src="js/script.js" charset="ISO-8859-1" type="text/javascript"></script>
-<style>
-  .red {
-    color: red;
-  }
-  .ui-mobile [data-role="page"] {
-    box-sizing: border-box !important;
-    border: 10px solid #1A5E9B !important;
-    height: 100% !important;
-    border: 5;
-  }
-  .ui-mobile [data-role="maintopo"] {
-    box-sizing: border-box !important;
-    background-color: #F8D117;
-    border: 10px solid #1A5E9B !important;
-    border-bottom: none !important;
-  }
-  .ui-mobile [data-role="mainfundo"] {
-    box-sizing: border-box !important;
-    border: 10px solid #1A5E9B !important;
-    border-top: none !important;
-  }
-  .alinhadoEsquerda{ 
-	float:left; 
-	margin-bottom: 1%;
-  }
-  .celulaA{
-  	box-sizing: border-box !important;
-    border: 10px solid #1A5E9B !important;
-    width: 50%;
-  }
-  .celulaB{
-  	box-sizing: border-box !important;
-    border: 10px solid #1A5E9B !important;
-    border-left: none !important;
-    width: 50%;
-  }
-
-</style>
+<link rel="stylesheet" href="css/estilo.css">
 </head>
 
 <body>
 	<div data-role="page">
 		<div data-role="maintopo" class="ui-content">
-			<h1 align="center"><img src="image/bbLogo.jpg" alt="Low resolution logo"class="alinhadoEsquerda"/>Simulador - Fundos de Investimentos Governo</h1>
+			<table class="tabelaValores"><tr>
+				<td>
+					<img src="image/bbLogo.jpg" class="alinhadoEsquerda"/>
+				</td>
+				<td>
+					<h1 align="center" class="fonteCabecalho">Investimentos Setor Público</h1>
+				</td>
+			</tr></table>
 		</div>
-		<table  cellspacing="0" cellpadding="0" style="border: none;width: 100%;">
+		<table class="tabelaValores">
 			<tr>
 				<td class=celulaA>
 					<div class="ui-content">
-						<table><tr><td style="font-size: 22px; font-weight: bold;">Recursos Internalizados BB</td><td style="font-size: 12px; font-weight: bold;">(migração de recursos entre produtos BB)</td></tr></table>
+						<table><tr><td class="fonteRecursos">Recursos Internalizados BB</td><td class="fonteRecursosDescricao">(migração de recursos entre produtos BB)</td></tr></table>
 						
-						<label for="fname">Informe o valor aplicado atual</label>
-						<input type="text" name="valor" id="valor" data-clear-btn="false">
+						<label class="fonteValores" for="fname">Informe o valor aplicado atual</label>
+						<input class="fonteValores" type="text" name="valor" id="valor" data-clear-btn="false">
 						
-						<label for="select-choice-1" class="select">Selecione o fundo de investimento</label>
-						
-						<select name="select-choice-1" id="selecaotarifas">
+						<label class="fonteValores" for="select-choice-1" class="select">Selecione o fundo de investimento</label>
+						<select class="fonteValores" name="select-choice-1" id="selecaotarifas">
 							<option selected value=0>Selecione um produto</option>
 						</select>
 						
@@ -73,106 +42,107 @@
 				</td>
 				<td class=celulaB>
 					<div class="ui-content">
-						<table><tr><td style="font-size: 22px; font-weight: bold;">Novos recursos</td><td style="font-size: 12px; font-weight: bold;">(não estão no BB)</td></tr></table>
-						<label for="fname">Informe o valor da nova aplicação</label>
-						<input type="text" name="novaAplicacao" id="novaAplicacao" data-clear-btn="false">
+						<table><tr><td class="fonteRecursos">Novos recursos</td><td class="fonteRecursosDescricao">(não estão no BB)</td></tr></table>
+						
+						<label class="fonteValores" for="fname">Informe o valor da nova aplicação</label>
+						<input class="fonteValores" type="text" name="novaAplicacao" id="novaAplicacao" data-clear-btn="false">
 						
 					</div>
 				</td>
 			</tr>
 		</table>
 		<div data-role="mainfundo" class="ui-content">
-			<h2 align="center">Novo Resultado</h2>
+			<h2 align="center" class="fonteResultado">Novo Resultado</h2>
 			
 			<!-- TABELA DE TARIFAS POSSÍVEIS -->
 			<!-- <table data-role="table" id="table-custom-2" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="Exibir colunas" data-column-popup-theme="a"> -->
 			<table data-role="table" id="table-custom-2" data-mode="reflow" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="Exibir colunas" data-column-popup-theme="a">
 				<thead>
 					<tr>
-						<th data-priority="1" id="headColunaTarifaAtual">Resultado Recurso Internalizado</th>
-						<th data-priority="1">Migração de Aplicação<br>Fundo de investimento</th>
-						<th data-priority="1">Taxa (% a.a.)</th>
-						<th data-priority="1">Resultado Migração<br>Novo fundo de investimento</th>
-						<th data-priority="1">Resultado Captação<br>Novos Recursos</th>
-						<th data-priority="1">Evolução Resultado</th>
+						<th class="fonteTabelaCabecalho" data-priority="1" id="headColunaTarifaAtual">Resultado Recurso Internalizado</th>
+						<th class="fonteTabelaCabecalho" data-priority="1">Migração de Aplicação<br>Fundo de investimento</th>
+						<th class="fonteTabelaCabecalho" data-priority="1">Taxa (% a.a.)</th>
+						<th class="fonteTabelaCabecalho" data-priority="1">Resultado Migração<br>Novo fundo de investimento</th>
+						<th class="fonteTabelaCabecalho" data-priority="1">Resultado Captação<br>Novos Recursos</th>
+						<th class="fonteTabelaCabecalho" data-priority="1">Evolução Resultado</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td id="bbaplicacaoatual1"></td>
-						<td>BB CP Supremo</td>
-						<td>4,0</td>
-						<td id="bbcpsupremoA"></td>
-						<td id="bbcpsupremoB"></td>
-						<td id="bbcpsupremoC"></td>
+						<td class="fonteTabelaCelula" id="bbaplicacaoatual1"></td>
+						<td class="fonteTabelaCelula">Fundo Setor Público Supremo</td>
+						<td class="fonteTabelaCelula">4,0</td>
+						<td class="fonteTabelaCelula" id="bbcpsupremoA"></td>
+						<td class="fonteTabelaCelula" id="bbcpsupremoB"></td>
+						<td class="fonteTabelaCelula" id="bbcpsupremoC"></td>
 					</tr>
 					<tr>
-						<td id="bbaplicacaoatual2"></td>
-						<td>BB CP Clássico</td>
-						<td>2,0</td>
-						<td id="bbcpclassicoA"></td>
-						<td id="bbcpclassicoB"></td>
-						<td id="bbcpclassicoC"></td>
+						<td class="fonteTabelaCelula" id="bbaplicacaoatual2"></td>
+						<td class="fonteTabelaCelula">Fundo Setor Público Clássico</td>
+						<td class="fonteTabelaCelula">2,0</td>
+						<td class="fonteTabelaCelula" id="bbcpclassicoA"></td>
+						<td class="fonteTabelaCelula" id="bbcpclassicoB"></td>
+						<td class="fonteTabelaCelula" id="bbcpclassicoC"></td>
 					</tr>
 					<tr>
-						<td id="bbaplicacaoatual3"></td>
-						<td>BB CP Soberano</td>
-						<td>1,5</td>
-						<td id="bbcpsoberanoA"></td>
-						<td id="bbcpsoberanoB"></td>
-						<td id="bbcpsoberanoC"></td>
+						<td class="fonteTabelaCelula" id="bbaplicacaoatual3"></td>
+						<td class="fonteTabelaCelula">Fundo Setor Público Soberano</td>
+						<td class="fonteTabelaCelula">1,5</td>
+						<td class="fonteTabelaCelula" id="bbcpsoberanoA"></td>
+						<td class="fonteTabelaCelula" id="bbcpsoberanoB"></td>
+						<td class="fonteTabelaCelula" id="bbcpsoberanoC"></td>
 					</tr>
 					<tr>
-						<td id="bbaplicacaoatual4"></td>
-						<td>BB CP Absoluto</td>
-						<td>1,0</td>
-						<td id="bbcpabsolutoA"></td>
-						<td id="bbcpabsolutoB"></td>
-						<td id="bbcpabsolutoC"></td>
+						<td class="fonteTabelaCelula" id="bbaplicacaoatual4"></td>
+						<td class="fonteTabelaCelula">Fundo Setor Público Absoluto</td>
+						<td class="fonteTabelaCelula">1,0</td>
+						<td class="fonteTabelaCelula" id="bbcpabsolutoA"></td>
+						<td class="fonteTabelaCelula" id="bbcpabsolutoB"></td>
+						<td class="fonteTabelaCelula" id="bbcpabsolutoC"></td>
 					</tr>
 					<tr>
-						<td id="bbaplicacaoatual5"></td>
-						<td>BB CP Diferenciado</td>
-						<td>0,5</td>
-						<td id="bbcpdiferenciadoA"></td>
-						<td id="bbcpdiferenciadoB"></td>
-						<td id="bbcpdiferenciadoC"></td>
+						<td class="fonteTabelaCelula" id="bbaplicacaoatual5"></td>
+						<td class="fonteTabelaCelula">Fundo Setor Público Diferenciado</td>
+						<td class="fonteTabelaCelula">0,5</td>
+						<td class="fonteTabelaCelula" id="bbcpdiferenciadoA"></td>
+						<td class="fonteTabelaCelula" id="bbcpdiferenciadoB"></td>
+						<td class="fonteTabelaCelula" id="bbcpdiferenciadoC"></td>
 					</tr>
 					<tr>
-						<td id="bbaplicacaoatual6"></td>
-						<td>BB CP Master</td>
-						<td>0,5</td>
-						<td id="bbcpmasterA"></td>
-						<td id="bbcpmasterB"></td>
-						<td id="bbcpmasterC"></td>
+						<td class="fonteTabelaCelula" id="bbaplicacaoatual6"></td>
+						<td class="fonteTabelaCelula">Fundo Setor Público Master</td>
+						<td class="fonteTabelaCelula">0,5</td>
+						<td class="fonteTabelaCelula" id="bbcpmasterA"></td>
+						<td class="fonteTabelaCelula" id="bbcpmasterB"></td>
+						<td class="fonteTabelaCelula" id="bbcpmasterC"></td>
 					</tr>
 					<tr>
-						<td id="bbaplicacaoatual7"></td>
-						<td>BB CP Super</td>
-						<td>0,2</td>
-						<td id="bbcpsuperA"></td>
-						<td id="bbcpsuperB"></td>
-						<td id="bbcpsuperC"></td>
+						<td class="fonteTabelaCelula" id="bbaplicacaoatual7"></td>
+						<td class="fonteTabelaCelula">Fundo Setor Público Super</td>
+						<td class="fonteTabelaCelula">0,2</td>
+						<td class="fonteTabelaCelula" id="bbcpsuperA"></td>
+						<td class="fonteTabelaCelula" id="bbcpsuperB"></td>
+						<td class="fonteTabelaCelula" id="bbcpsuperC"></td>
 					</tr>
 					<tr>
-						<td id="bbaplicacaoatual8"></td>
-						<td>BB CP Premium</td>
-						<td>0,2</td>
-						<td id="bbcppremiumA"></td>
-						<td id="bbcppremiumB"></td>
-						<td id="bbcppremiumC"></td>
+						<td class="fonteTabelaCelula" id="bbaplicacaoatual8"></td>
+						<td class="fonteTabelaCelula">Fundo Setor Público Premium</td>
+						<td class="fonteTabelaCelula">0,2</td>
+						<td class="fonteTabelaCelula" id="bbcppremiumA"></td>
+						<td class="fonteTabelaCelula" id="bbcppremiumB"></td>
+						<td class="fonteTabelaCelula" id="bbcppremiumC"></td>
 					</tr>
 					<tr>
-						<td id="bbaplicacaoatual9"></td>
-						<td>BB CP Ref</td>
-						<td>0,1</td>
-						<td id="bbcprefA"></td>
-						<td id="bbcprefB"></td>
-						<td id="bbcprefC"></td>
+						<td class="fonteTabelaCelula" id="bbaplicacaoatual9"></td>
+						<td class="fonteTabelaCelula">Fundo Setor Público Ref</td>
+						<td class="fonteTabelaCelula">0,1</td>
+						<td class="fonteTabelaCelula" id="bbcprefA"></td>
+						<td class="fonteTabelaCelula" id="bbcprefB"></td>
+						<td class="fonteTabelaCelula" id="bbcprefC"></td>
 					</tr>
 				</tbody>
 			</table>
-			<table><tr><td style="font-size: 12px; font-weight: bold;">Obs: Resultado calculado com média em um mês com 21 dias úteis</td></tr></table>
+			<table><tr><td class="fonteObservacao">Obs: Resultado calculado com média em um mês com 21 dias úteis</td></tr></table>
 		</div>
 	</div>
 	<br>
