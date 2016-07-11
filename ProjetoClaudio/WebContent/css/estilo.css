@@ -3,6 +3,13 @@
 	*************************************************************/
 	.fonteCabecalho{
 		font-size: 72px !important;
+		font-weight: bold;
+		text-align: center;
+	}
+	.fonteCabecalho2{
+		font-size: 60px !important;
+		font-weight: bold;
+		text-align: center;
 	}
 	.fonteRecursos{
 		font-size: 22px;
@@ -27,6 +34,11 @@
 	.fonteObservacao{
 		font-size: 12px;
 		font-weight: bold;
+	}
+	.fonteObservacao2{
+		font-size: 16px;
+		font-weight: bold;
+		padding-left: 15px;
 	}
 	.fonteApresentacao{
 		font-size: 18px;
